@@ -8,16 +8,11 @@ dependencies = [
     "bs4>=0.0.2",
     "fastapi>=0.115.11",
     "finscreen>=0.1.1",
-    "finviz-platform",
-    "finvizfinance>=1.1.0",
     "logging>=0.4.9.6",
     "lxml>=5.3.1",
     "pandas>=2.2.3",
     "pydantic>=2.10.6",
-    "pyfinviz>=1.2",
     "python-decouple>=3.8",
     "requests>=2.32.3",
+    "uvicorn[standard]>=0.34.0",
 ]
-
-[tool.uv.sources]
-finviz-platform = { git = "https://github.com/mariostoev/finviz" }
