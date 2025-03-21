@@ -1,17 +1,18 @@
 # Finviz API
 
-A Python API for extracting and analyzing financial data from Finviz using web scraping.
+A Python API built with FastAPI for extracting and analyzing financial data from Finviz using web scraping.
 
 ---
 
 ## Overview
 
-The Finviz API project enables users to extract stock tickers and fundamental financial indicators directly from Finviz.com. The API facilitates seamless integration into your financial analysis workflows, providing tools to automate and extend stock analysis tasks.
+The Finviz API project enables users to extract stock tickers and fundamental financial indicators directly from Finviz.com. It leverages FastAPI to create a robust and scalable REST API, facilitating seamless integration into your financial analysis workflows, and automating stock analysis tasks.
 
 ---
 
 ## Features
 
+- **REST API with FastAPI:** Serve data through a simple and efficient API endpoint.
 - **Stock Screener:** Extract stock tickers based on predefined or custom filters from Finviz.
 - **Fundamental Data Extraction:** Retrieve detailed financial indicators for specific tickers.
 - **Pagination Handling:** Automatically manages multi-page screener results.
@@ -22,61 +23,48 @@ The Finviz API project enables users to extract stock tickers and fundamental fi
 
 ## Installation
 
-Clone this repository and set up the environment using [uv](https://github.com/astral-sh/uv):
+Clone this repository and install dependencies using `uv`:
 
 ```bash
 git clone https://github.com/yourusername/finviz-api.git
 cd finviz-api
 uv venv
-uv pip install requests beautifulsoup4 pandas
+uv pip install .
 ```
 
-Activate your virtual environment:
+Dependencies are managed in the `pyproject.toml` file.
+
+---
+
+## Running the API
+
+Start the FastAPI server:
 
 ```bash
-source .venv/bin/activate
+uvicorn main:app --reload
+```
+
+Visit the API documentation at:
+
+```
+http://localhost:8000/docs
 ```
 
 ---
 
-## Usage
+## API Usage Examples
 
 ### Extracting Tickers from Finviz Screener
 
-Use the screener to obtain tickers based on predefined filters:
-
-```python
-from screener import get_total_tickers, get_finviz_stocks, BASE_URL
-
-# Step 1: Get total tickers
-total_tickers = get_total_tickers(BASE_URL)
-
-# Step 2: Retrieve stock information
-df_tickers = get_finviz_stocks(BASE_URL, total_tickers)
-print(df_tickers.head())
+```bash
+GET /tickers
 ```
 
 ### Extracting Fundamental Data
 
-Obtain detailed fundamental indicators for tickers:
-
-```python
-from fundamentals import get_fundamentals_for_tickers
-
-# List of tickers (example)
-tickers = ['AAPL', 'TSLA', 'MSFT']
-
-# Get fundamentals
-df_fundamentals = get_fundamentals_for_tickers(tickers)
-print(df_fundamentals.head())
+```bash
+GET /fundamentals?ticker=AAPL
 ```
-
----
-
-## Output Data
-
-- **Ticker Data**: Saved to `finviz_tickers.csv`.
-- **Fundamental Data**: Saved to `finviz_fundamentals.csv`.
 
 ---
 
@@ -84,26 +72,13 @@ print(df_fundamentals.head())
 
 ```
 finviz-api/
-├── fundamentals.py         # Fundamental indicators extraction logic
-├── screener.py             # Stock tickers scraping from Finviz screener
-├── main.py                 # Entry point demonstrating API usage
-└── README.md               # Project documentation
-```
-
----
-
-## Dependencies
-
-Managed by **uv**:
-
-- requests
-- beautifulsoup4
-- pandas
-
-Install dependencies using:
-
-```bash
-uv pip install requests beautifulsoup4 pandas
+├── app/
+│   ├── fundamentals.py        # Fundamental indicators extraction logic
+│   ├── screener.py            # Stock tickers scraping from Finviz screener
+│   └── schemas.py             # Pydantic schemas for data validation
+├── main.py                    # FastAPI entry point
+├── pyproject.toml             # Project dependencies and configuration
+└── README.md                  # Project documentation
 ```
 
 ---
@@ -123,4 +98,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Disclaimer
 
 This API performs web scraping on Finviz.com. Ensure compliance with the website’s terms of service and usage policies.
-
