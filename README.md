@@ -98,4 +98,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Disclaimer
 
 This API performs web scraping on Finviz.com. Ensure compliance with the website’s terms of service and usage policies.
-
