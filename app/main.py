@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from screener import (
+from app.screener import (
     get_total_tickers,
     get_finviz_stocks,
     get_ticker_list,
     BASE_URL as SCREENER_URL
 )
-from fundamentals import get_fundamentals_for_tickers
+from app.fundamentals import get_fundamentals_for_tickers
 
 app = FastAPI()
 

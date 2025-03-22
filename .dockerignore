@@ -1,12 +1,38 @@
+# Entornos virtuales locales
+.venv
+venv/
+
+# Archivos cache Python
 __pycache__/
 *.pyc
-*.pyo
-*.sqlite3
-.env
-migrations/**/__pycache__/
-tests/__pycache__/
-.vscode/
-.idea/
-*.swp
-*.swo
+
+# Logs y archivos temporales
+*.log
+*.tmp
+
+# Archivos del sistema operativo
 .DS_Store
+
+# Git y versionado
+.git
+.gitignore
+
+# Configuraciones Docker (excepto Dockerfile y .dockerignore)
+docker-compose.yml
+
+# Archivos IDE
+.idea/
+.vscode/
+
+# Directorios de construcción Python
+build/
+dist/
+
+# Documentación
+*.md
+
+# Pruebas (opcional, elimina si deseas incluir tests en la imagen)
+tests/
+
+# Datos locales (opcional, si no deseas datos locales en la imagen)
+data/
