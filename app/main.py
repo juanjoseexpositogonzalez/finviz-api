@@ -30,6 +30,12 @@ async def get_fundamental(ticker: str):
     df_fundamental = get_fundamentals_for_tickers([ticker])
     return df_fundamental.to_dict(orient="records")
 
+@app.get(/"tickers")
+async def get_tickers():
+    total_tickers = get_total_tickers(SCREENER_URL)
+    df_stocks = get_finviz_stocks(SCREENER_URL, total_tickers)
+    return get_ticker_list(df_stocks)
+
 # def main():
 #     # Paso 1: Obtener tickers desde Finviz (screener.py)
 #     total_tickers = get_total_tickers(SCREENER_URL)
