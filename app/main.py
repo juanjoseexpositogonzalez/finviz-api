@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 from app.screener import (
     get_total_tickers,
@@ -34,7 +35,8 @@ async def get_fundamental(ticker: str):
 async def get_tickers():
     total_tickers = get_total_tickers(SCREENER_URL)
     df_stocks = get_finviz_stocks(SCREENER_URL, total_tickers)
-    return get_ticker_list(df_stocks)
+    tickers: List[str] =  get_ticker_list(df_stocks)
+    return { "Tickers": tickers }
 
 # def main():
 #     # Paso 1: Obtener tickers desde Finviz (screener.py)
